@@ -5,9 +5,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import net.sf.json.JSONObject;
 
 import com.zff.web.util.GlobalConstants;
+import com.zff.wechat.quartz.QuartzJob;
 import com.zff.wechat.util.HttpUtils;
 
 /**
@@ -19,6 +22,8 @@ import com.zff.wechat.util.HttpUtils;
  *
  */
 public class WeChatTask {
+	
+	private static Logger LOG = Logger.getLogger(QuartzJob.class);
     /**
      * @Description: 任务执行体
      * @param @throws Exception
@@ -35,7 +40,7 @@ public class WeChatTask {
         String access_token = JSONObject.fromObject(jstoken).getString(
                 "access_token"); // 获取到 token 并赋值保存
         GlobalConstants.interfaceUrlProperties.put("access_token", access_token);
-                System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+"token 为=============================="+access_token);
+        LOG.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())+" token 为====================="+access_token);
     }
 
 }

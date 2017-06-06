@@ -1,6 +1,14 @@
 package com.zff.web.po;
 
-public class UserPo {
+/**
+ * 
+ * @ClassName:  UserPo   
+ * @Description:用户po
+ * @author: Android_Robot  
+ * @date:   2017年6月6日 下午8:19:24   
+ *
+ */
+public class UserPo extends BasePo{
 	private Long userId;
 	
 	private String userName;
