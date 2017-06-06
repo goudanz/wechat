@@ -19,7 +19,7 @@ import com.zff.wechat.util.SignUtil;
 @Controller
 @RequestMapping("/wechat")
 public class WechatSecurity {
-    private static Logger logger = Logger.getLogger(WechatSecurity.class);
+    private static Logger LOG = Logger.getLogger(WechatSecurity.class);
 
     /**
      * @Title: doGet   
@@ -47,10 +47,10 @@ public class WechatSecurity {
                 out.print(echostr);
                 out.close();
             } else {
-                logger.info("这里存在非法请求！");
+                LOG.info("这里存在非法请求！");
             }
         } catch (Exception e) {
-            logger.error(e, e);
+            LOG.error(e, e);
         }
     }
 
@@ -80,7 +80,7 @@ public class WechatSecurity {
                 out.close();
             }
         }catch(Exception e){
-            logger.error(e,e);
+            LOG.error(e,e);
         }
     }
 }

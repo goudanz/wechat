@@ -80,17 +80,17 @@ public class MsgDispatcher {
         }
 
         if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) { // 语音消息
-        	if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) { 
+        	if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) { 
         		LOG.info("==============这是语音消息！");
             	
-            	//普通文本消息
+            	//普通语音消息
             	TextMessage txtmsg=new TextMessage();
             	txtmsg.setFromUserName(mpid);
             	txtmsg.setToUserName(openid);
             	txtmsg.setCreateTime(new Date().getTime());
             	txtmsg.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
 
-            	if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) { // 文本消息
+            	if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_VOICE)) { // 语音消息
             	    txtmsg.setContent("我知道你想和我语音交流，但是很抱歉哦，小狗蛋家里有人哦！不方便呢！");
             	    return MessageUtil.textMessageToXml(txtmsg);
             	}
