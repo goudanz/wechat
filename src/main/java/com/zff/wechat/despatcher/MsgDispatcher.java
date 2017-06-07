@@ -30,19 +30,37 @@ public class MsgDispatcher {
 		// 文本消息
         if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) { 
         	LOG.info("==============这是文本消息！");
-        	//普通文本消息
+        	// 先获取到问的问题，然后去数据库中匹配，将匹配到的数据返回，如果匹配不到，就调用搜索接口，获取信息
+        	
+        	
+        	// 普通文本消息
         	TextMessage txtmsg=new TextMessage();
         	txtmsg.setFromUserName(mpid);
         	txtmsg.setToUserName(openid);
         	txtmsg.setCreateTime(new Date().getTime());
         	txtmsg.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-
         	if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) { // 文本消息
         	    txtmsg.setContent("你好，这里是周非凡个人账号！");
         	    return MessageUtil.textMessageToXml(txtmsg);
         	}
         }
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_IMAGE)) { // 图片消息
             LOG.info("==============这是图片消息！");
             //对图文消息
