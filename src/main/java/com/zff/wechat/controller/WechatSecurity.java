@@ -21,6 +21,7 @@ import com.zff.wechat.util.SignUtil;
 public class WechatSecurity {
     private static Logger LOG = Logger.getLogger(WechatSecurity.class);
 
+    MsgDispatcher msgDispatcher = new MsgDispatcher();
     /**
      * @Title: doGet   
      * @Description: TODO(用于接收 get 参数，返回验证参数)   
@@ -73,7 +74,7 @@ public class WechatSecurity {
                 EventDispatcher.processEvent(map); //进入事件处理
             }else{
             	//进入事件处理
-                String respXML = MsgDispatcher.processMessage(map);
+                String respXML = msgDispatcher.processMessage(map);
                 PrintWriter out = response.getWriter();
                 out.print(respXML);
                 out.flush();

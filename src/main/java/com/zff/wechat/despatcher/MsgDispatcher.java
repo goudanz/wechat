@@ -5,8 +5,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
+import com.zff.web.po.WxTextPo;
+import com.zff.web.service.WxTextService;
+import com.zff.web.service.impl.WxTextServiceImpl;
 import com.zff.wechat.message.resp.Article;
 import com.zff.wechat.message.resp.NewsMessage;
 import com.zff.wechat.message.resp.TextMessage;
@@ -24,16 +30,20 @@ import com.zff.wechat.util.MessageUtil;
 public class MsgDispatcher {
 	private static final Log LOG = LogFactory.getLog(MsgDispatcher.class);
 	
-	public static String processMessage(Map<String, String> map) {
+	@Autowired
+	private WxTextService wxTextService;
+	
+	
+	public String processMessage(Map<String, String> map) {
 		String openid=map.get("FromUserName"); //用户 openid
     	String mpid=map.get("ToUserName");   //公众号原始 ID
+    	String ttGreet = map.get("Content");
 		// 文本消息
         if (map.get("MsgType").equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) { 
         	LOG.info("==============这是文本消息！");
         	// 先获取到问的问题，然后去数据库中匹配，将匹配到的数据返回，如果匹配不到，就调用搜索接口，获取信息
-        	
-        	
-        	// 普通文本消息
+//        	WxTextPo wxTextPo = wxTextService.fetchAnswerByGreet(ttGreet);
+//        	 普通文本消息
         	TextMessage txtmsg=new TextMessage();
         	txtmsg.setFromUserName(mpid);
         	txtmsg.setToUserName(openid);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zff.web.dao.WxTextDao" >
-	<resultMap type="com.zff.web.po.WxTextPo" id="BaseResultMap">
+<mapper namespace="com.zff.web.dao.WxTextDao">
+	<resultMap id="BaseResultMap" type="com.zff.web.po.WxTextPo">
 		<id column="tt_text_id" property="ttTextId" jdbcType="INTEGER" />
 		<result column="tt_greet" property="ttGreet" jdbcType="VARCHAR" />
 		<result column="tt_answer" property="ttAnswer" jdbcType="VARCHAR" />
@@ -10,6 +10,22 @@
 		<result column="update_by" property="updateBy" jdbcType="INTEGER" />
 		<result column="update_date" property="updateDate" jdbcType="DATE" />
 		<result column="opt_counter" property="optCounter" jdbcType="INTEGER" />
-		<result column="mark_for_delete" property="markForDelete" jdbcType="BIT" />
+		<result column="mark_for_delete" property="markForDelete"
+			jdbcType="BIT" />
 	</resultMap>
+
+	<sql id="Base_Column_List">
+		tt_text_id,tt_greet,tt_answer,create_by,create_date,update_by,update_date,opt_counter,mark_for_delete
+	</sql>
+
+	<select id="fetchAnswerByGreet" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from wx_text
+		where 1=1
+		<if test="ttGreet!=null">
+			and tt_greet = #{ttGreet,jdbcType=VARCHAR}
+		</if> 
+	</select>
+
 </mapper>
